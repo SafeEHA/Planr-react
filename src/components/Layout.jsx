@@ -1,14 +1,12 @@
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
-import Form from "react-bootstrap/Form";
-import Table from "react-bootstrap/Table";
-import ModalForm from "./ModalForm";
 import React, { useEffect, useState } from "react";
+import ContentPage from "./ContentPage";
+import ModalForm from "./ModalForm";
+import TablePage from "./TablePage";
+
 
 function Layout() {
-  
   const [formState, setFormState] = useState({
     name: "",
     type: "",
@@ -74,92 +72,14 @@ function Layout() {
       </Row>
 
       {!records || records.length < 1 ? (
-        <div style={{ backgroundColor: "#f5f6fa", height: "100vh" }}>
-          <Container fluid="xl">
-            <div>
-              <div className="content">
-                <div className="content-info">
-                  <Image
-                    src={require("./assets/book-pen.png")}
-                    style={{ height: "130px", width: "130px" }}
-                  />
-                  <p>
-                    No campaigns found.{" "}
-                    <button
-                      style={{
-                        color: "blue",
-                        border: "none",
-                        backgroundColor: "#f5f6fa",
-                      }}
-                      onClick={handleShow}
-                    >
-                      Add Campaigns
-                    </button>{" "}
-                    to start recording
-                    <br /> and managing campaigns.{" "}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Container>
-        </div>
+        <ContentPage handleShow={handleShow} />
       ) : (
-        <div style={{ backgroundColor: "#f5f6fa", height: "100vh" }}>
-          <Container fluid="xl">
-            <Row>
-              <Col className="top-row table-container" sm>
-                <Form.Control
-                  type="Search"
-                  value={searchValue}
-                  className="search"
-                  style={{ width: "200px" }}
-                  placeholder="Search"
-                  onChange={(e) => setSearchValue(e.target.value)}
-                />
-
-                <Row>
-                  <Col>
-                    <Table>
-                      <thead>
-                        <tr>
-                          <th>CAMPAIGN NAME</th>
-                          <th>TYPE</th>
-                          <th>STATUS</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filterRecords.map((item, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>
-                                <input type="radio" />
-                                <button
-                                  style={{
-                                    color: "blue",
-                                    border: "none",
-                                    backgroundColor: "#ffff",
-                                  }}
-                                  onClick={() => handleEdit(item.id)}
-                                >
-                                  {item.name} {item.startdate}
-                                </button>
-                              </td>
-
-                              <td>{item.type}</td>
-                              <td style={{ color: `${item.statusColor}` }}>
-                                {item.status}
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </Table>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+        <TablePage
+          filterRecords={filterRecords}
+          handleEdit={handleEdit}
+          setSearchValue={setSearchValue}
+          searchValue={searchValue}
+        />
       )}
     </>
   );
