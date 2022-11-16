@@ -5,7 +5,6 @@ import ContentPage from "./ContentPage";
 import ModalForm from "./ModalForm";
 import TablePage from "./TablePage";
 
-
 function Layout() {
   const [formState, setFormState] = useState({
     name: "",

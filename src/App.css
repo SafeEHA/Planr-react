@@ -36,3 +36,8 @@ tbody {
 h2 {
     margin-left: 4rem
 }
+@media(max-width:1200px) {
+    h2 {
+        margin-left: 0;
+    }
+}

@@ -16,7 +16,7 @@ const TablePage = ({filterRecords, setSearchValue, searchValue, handleEdit}) => 
                   value={searchValue}
                   className="search"
                   style={{ width: "200px" }}
-                  placeholder="Search"
+                  placeholder="Search by status"
                   onChange={(e) => setSearchValue(e.target.value)}
                 />
 
@@ -41,6 +41,7 @@ const TablePage = ({filterRecords, setSearchValue, searchValue, handleEdit}) => 
                                     color: "blue",
                                     border: "none",
                                     backgroundColor: "#ffff",
+                                    whiteSpace:"nowrap",
                                   }}
                                   onClick={() => handleEdit(item.id)}
                                 >
